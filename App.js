@@ -30,19 +30,18 @@ class App extends PureComponent {
 
 			const file = await RNHTMLtoPDF.convert(options);
 
-			logger.log('file stored: ', file, true);
+			logger.log('file stored: ', file);
 
 			const dbx = new Dropbox({
-				accessToken: '4VbXI3hP8UAAAAAAAAAADY9KEJOVpMZPFgpqEDJRHfWKAQ8QF8352ObTBcjohGGr',
+				accessToken: '4VbXI3hP8UAAAAAAAAAAFKCyt2ygBFAFPOhis68OkTKkGG-EDPNuEq7i42CuQdi9',
 				fetch
 			});
 
-			const fileListResponse = await dbx.filesListFolder({ path: '' });
+			/* const fileListResponse = await dbx.filesListFolder({ path: '' });
 
-			logger.log('filesListFolder', fileListResponse);
+			logger.log('filesListFolder', fileListResponse); */
 
-
-			const buff = this.base64ToArrayBuffer(file.base64);
+			const buff = this.base64ToArrayBuffer(file.base64); //to create array buffer
 
 			const fileUploadResponse = await dbx.filesUpload({
 				path: `/test_${Math.floor(100000 + (Math.random() * 900000))}.pdf`,
